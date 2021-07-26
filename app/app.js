@@ -1,33 +1,32 @@
-const authEvents = require('./auth/events')
-const gameEvents = require('./game/events')
-const nav = require('./nav/ui')
+'use strict'
+const sequencer = require('./sequencer')
+const oscillator = require('./oscillator')
+const store = require('./store')
+const convert = require('./convert')
 
 $(() => {
-  // Authorization Event Listeners
-  $('#signUp').on('submit', authEvents.onSignUp)
-  $('#signIn').on('submit', authEvents.onSignIn)
-  $('#signOut').on('click', authEvents.onSignOut)
-  $('#changePassword').on('submit', authEvents.onChangePassword)
+  $(window).on('click', () => {
+    store.context = new (window.AudioContext || window.webkitAudioContext)()
+    console.log('New Audio Context Created')
+    $(window).off()
+    oscillator.newOscillator()
+    $('#testNote').on('click', () => { oscillator.toggleOscillator(store.oscillators[0]) })
+    $('#startSequence').on('click', sequencer.playSequence)
+  })
 
-  // Navigation Event Listeners
-  $('#signUpInstead').on('click', nav.onSignUpInstead)
-  $('#signInInstead').on('click', nav.onSignInInstead)
-  $('#showPassword').on('click', nav.onShowPassword)
-  $('#cancelSignOut, #showSignOut').on('click', nav.onAreYouSure)
-  $('#changeTheme').on('click', nav.changeTheme)
-  $('#navTitle').on('click', nav.onMainMenu)
-  $('footer').on('click', nav.toggleFooter)
-  $('#account').on('click', nav.onAccount)
-  $('#neat').on('click', nav.onAccount)
-
-  // Game Event Listeners
-  $('#diff').on('change', gameEvents.onChangeDiff)
-  $('#playerType').on('click', gameEvents.onToggleAI)
-  $('#gameData').on('click', gameEvents.onGetGameData)
-  $('#diffSlider').on('click', gameEvents.onChangeDiff)
-  $('#newGame, #playAgain').on('click', gameEvents.onNewGame)
-  for (let i = 0; i < 9; i++) $(`#${i}`).on('click', gameEvents.onPlaceMarker)
-
-  // Initialize to login view
-  $('.hideOnStart').hide()
+  $('#addToSequence').on('click', () => {
+    const target = `#${$('#sequence :selected').val()}`
+    const note = convert.inputToNote()
+    const freq = convert.noteToFrequency(note)
+    $(target).text(note.name() + note.octave)
+    $(target).data('freq', freq.toFixed(2))
+    $(target).on('mouseover', () => {
+      $(target).text(freq.toFixed(2))
+    })
+    $(target).on('mouseout', () => {
+      $(target).text(note.name() + note.octave)
+    })
+    $('#sequence option:selected').next().attr('selected', 'selected')
+  })
+  $('#waveform').on('change', oscillator.setWaveform)
 })

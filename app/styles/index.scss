@@ -2,9 +2,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
 
 $black: #000;
-$primaryLight: lightblue;
+$primaryLight: rgba(5,0,0,.2);
 $secondaryLight: whitesmoke;
-$primaryDark: rgb(16, 25, 41);
+$primaryDark: brown;
 $secondaryDark: rgb(84, 88, 99);
 
 * {
@@ -13,7 +13,7 @@ $secondaryDark: rgb(84, 88, 99);
   font-size: calc(16px + 6 * ((100vw - 320px) / 680));
 }
 
-h2, .changePassLabel, .btn, #playerType {
+h2, .btn {
   overflow: hidden;
   white-space: nowrap;
 }
@@ -30,7 +30,7 @@ body {
   background-repeat: no-repeat;
   justify-content: center;
   width: 70vw;
-  max-width: 800px;
+  max-width: 700px;
 }
 
 footer {
@@ -45,8 +45,10 @@ footer {
 }
 
 input {
+  text-align: right;
   font-size: calc(16px + 6 * ((100vw - 320px) / 680));
   height: 2rem;
+  width: 4rem;
   background-color: $secondaryLight;
   border-radius: 2rem;
   justify-content: center;
@@ -75,14 +77,10 @@ th {
   border-radius: 1rem;
   padding: 5% 15%;
   margin: 5%;
-
-  &:hover {
-    background-color: rgba(150,150,255,.2)
-  }
 }
 
 .btn {
-  background-color: $secondaryLight;
+  background-color: brown;
   text-align: center;
   display: flex;
   align-items: center;
@@ -90,30 +88,11 @@ th {
   margin-top: .5rem;
 
   &:hover {
-    background-color: $primaryLight;
+    // background-color: $primaryLight;
     color: $secondaryLight;
     font-weight: bold;
   }
 }
-
-.gameMenu {
-  font-size: calc(10px + 6 * ((100vw - 320px) / 680));
-  margin: 0 auto;
-  line-height: 3rem;
-}
-
-.space {
-  background-color: transparent;
-  background-size: 70%;
-  background-repeat: no-repeat;
-  background-position: center center;
-  content: "";
-  display: block;
-  border: 5px solid black;
-  padding-top: percentage(1/3);
-  filter: brightness(0%);
-}
-
 
 .top {
   border-top: 0;
@@ -146,10 +125,6 @@ th {
   border-right: 0;
 }
 
-.instead {
-  width: 100%;
-}
-
 .menuBtns {
   width: percentage(2/3);
   position: absolute;
@@ -163,50 +138,8 @@ th {
   margin: 10% auto;
 }
 
-.signOut {
-  height: 35px;
-  position: sticky;
-  bottom: 10px;
-  right: 10px;
-  margin: 0 5px;
-  font-size: calc(14px + 6 * ((100vw - 320px) / 680));
-  float: right;
-}
-
-.gameNav {
-  background-color: transparent;
-  display: inline-block;
-  border-radius: 10%;
-  vertical-align: middle;
-  text-align: center;
-  justify-content: center;
-
-    &:hover {
-      background-color: rgba(225,225,225,.5);
-    }
-}
-
 .z {
   z-index: -1;
-}
-
-.confetti {
-  background-image: url(./public/images/confetti.gif);
-  background-size: 50%;
-  animation: confetti 5s;
-}
-
-.marked {
-  opacity: 1;
-}
-
-.animateMarked {
-  animation: placeMarker .5s;
-  animation-iteration-count: 1;
-}
-
-.invalid {
-  animation: invalidPlacement .5s;
 }
 
 .slideContainer {
@@ -264,18 +197,6 @@ th {
   font-size: calc(15px + 6 * ((100vw - 320px) / 680));
 }
 
-#diffLabel {
-  display: block;
-  text-align: center;
-  width: 100%;
-}
-
-#areYouSure, #showSignOut {
-  position: sticky;
-  line-height: 35px;
-  vertical-align: middle;
-}
-
 #message {
   margin: 0;
   padding: 0;
@@ -290,12 +211,6 @@ th {
   width: 100vw;
 }
 
-#gameStats {
-  margin-left: auto;
-  margin-right: auto;
-  font-size: calc(16px + 6 * ((100vw - 320px) / 680));
-}
-
 #board{
   margin-top: calc(16px + 6 * ((100vw - 320px) / 680));
   background-color: transparent;
@@ -303,116 +218,15 @@ th {
   max-width: 600px;
 }
 
-#gameTitle {
-  width: 100%;
-  white-space: nowrap;
-  font-size: calc(30px + 20 * ((100vw - 320px) / 680));
-  margin-top: 20%;
-  margin-bottom: 1rem;
-  text-align: center;
-}
-
 #navbarNav {
   padding: 0;
   align-items: flex-end;
 }
 
-#account {
-  position: absolute;
-  height: 56px;
-  top: 8px;
-  right: 20px;
-  vertical-align: middle;
-  text-align: right;
-
-  &:hover {
-    font-weight: bolder;
-  }
-}
-
-#gameMenu {
-  background-color: $secondaryLight;
-  height: 50px;
-  margin: 2rem 0;
-  padding: 0;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-around;
-  align-items: center;
-}
-
-@keyframes placeMarker {
-  from {
-    opacity: 0;
-    z-index: -1;
-  }
-  to {
-    opacity: 1;
-    z-index: -2;
-  }
-}
-
-@keyframes invalidPlacement {
-  0% {
-    filter: unset;
-    background-color: transparent;
-  }
-  50% {
-    background-color: $danger;
-    filter: unset;
-  }
-  100% {
-    background-color: transparent;
-    filter: unset;
-  }
-}
-
-@keyframes confetti {
-  0% {
-    background-size: 0;
-  }
-  30% {
-    background-size: 50%;
-  }
-  100% {
-    background-size: 50%;
-  }
-}
 @media only screen and (max-width: 600px) {
 
   body {
     width: 80vw;
-  }
-
-  .menuBtn {
-    margin: 30% auto;
-  }
-
-  @keyframes confetti {
-    0% {
-      background-size: 0;
-    }
-    30% {
-      background-size: 150%;
-    }
-    100% {
-      background-size: 150%;
-    }
-  }
-
-  .confetti {
-    background-image: url(./public/images/confetti.gif);
-    background-size: 150%;
-    animation: confetti 5s;
-  }
-}
-
-@media only screen and (max-height: 800px) {
-  .hidePopUp {
-    padding-top: 40px;
-  }
-  .hideAll {
-    padding-top: 100px;
   }
 }
 
@@ -422,3 +236,43 @@ th {
   }
 }
 
+#displayNotes {
+  margin: 15px 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+#displayNotes div {
+  text-align: center;
+  margin: 0;
+  padding: 15px 0;
+  border-radius: 1rem;
+
+  &:hover {
+    background-color: brown;
+    font-weight: bold;
+    color: white;
+  }
+}
+
+.border {
+  background-color: rgba(5,0,0,.2);
+  justify-content: center;
+}
+
+button {
+  background-color: brown;
+}
+
+label, #letter, #accidental, #octave {
+  margin-left: 0;
+  margin-right: 0;
+  padding-left: 0;
+  padding-right: 0;
+}
+
+#gain, #gainLabel {
+  display: inline
+}

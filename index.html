@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-      <title>Tic-Tac-Toe</title>
+      <title>JavaScript Synthesizer</title>
       <meta name="viewport" content="width=device-width, initial-scale=1">
 
       <!-- Do not add `link` tags-->
@@ -12,88 +12,89 @@
       <script src="public/application.js" type="text/javascript" charset="utf-8" defer></script>
     </head>
     <body>
-      <nav id="topNav" class="hideOnStart showOnSignIn navbar fixed-top navbar-expand-lg navbar-dark bg-dark">
-        <a id="navTitle" class="navbar-brand" href="#"><b>#</b> Tic-Tac-Toe</a>
-        <div id="navbarNav">
-          <ul class="navbar-nav">
-            <li class="nav-item me-auto">
-              <div id="account" class="nav-link">Account</div>
-            </li>
-          </ul>
+      <h1>JavaScript Synthesizer</h1>
+      <div class="border">
+        <div class="col-12">
+          <h3>Select Note</h3>
+          <label for="letter">Note:</label>
+          <select name="letter" id="letter">
+            <option value="A" selected="selected">A</option>
+            <option value="B">B</option>
+            <option value="C">C</option>
+            <option value="D">D</option>
+            <option value="E">E</option>
+            <option value="F">F</option>
+            <option value="G">G</option>
+          </select>
+          <label for="accidental"></label>
+          <select name="accidental" id="accidental">
+            <option value="flat">b</option>
+            <option value="natural" selected="selected"></option>
+            <option value="sharp">#</option>
+          </select>
+          <label for="octave"></label>
+          <select name="octave" id="octave">
+            <option value="0">0</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4" selected="selected">4</option>
+            <option value="5">5</option>
+            <option value="6">6</option>
+            <option value="7">7</option>
+            <option value="8">8</option>
+          </select>
         </div>
-      </nav>
-      <h1 id="gameTitle" class="showOnStart">Tic-Tac-Toe</h1>
-      <h3 id="message"></h3>
-      <div id="showTable" class="hideOnStart hideOnSignIn"></div>
-      <form id="signUp" class="hideOnStart hideOnSignIn auth border">
-        <h2>Sign Up</h2>
-        <label for="signUpEmail" class="col-12">Email:</label>
-        <input id="signUpEmail" name="credentials[email]" type="email" class="input col-12">
-        <label for="signUpPass" class="col-12">Password:</label>
-        <input id="signUpPass" name="credentials[password]" type="password" class="input col-12">
-        <label for="signUpPassConfirm" class="col-12">Confirm Password:</label>
-        <input id="signUpPassConfirm" name="credentials[password_confirmation]" type="password" class="input col-12">
-        <button type="submit" class="btn btn-light">Sign Up</button>
-      </form>
-      <form id="signIn" class="showOnStart hideOnSignIn auth border">
-        <h2>Sign In</h2>
-        <label for="signInEmail" class="col-12">Email:</label>
-        <input id="signInEmail" name="credentials[email]" type="email" class="input col-12">
-        <label for="signInPass" class="col-12">Password:</label>
-        <input id="signInPass" name="credentials[password]" type="password" class="input col-12">
-        <button id="signInButton" type="submit" class="btn btn-light">Sign In</button>
-      </form>
-      <div class="menuBtns">
-        <button id="newGame" class="hideOnStart showOnSignIn menuBtn btn btn-light">New Game</button>
-        <button id="gameData" class="hideOnStart showOnSignIn menuBtn btn btn-light">Game Data</button>
-        <div id="diffSlider" class="slideContainer hideOnStart showOnSignIn border menuBtn">
-          <label id="diffLabel">AI Difficulty</label>
-          <input type="range" min="0" max="2" value="1" class="slider hideOnStart showOnSignIn" id="diff">
-        </div>
-      </div>
-      <div class="menuBtns">
-        <button id="changeTheme" class="hideOnStart showOnAccount menuBtn btn btn-light">Dark Mode</button>
-        <button id="showPassword" class="hideOnStart showOnAccount menuBtn btn btn-light">Change Password</button>
-      </div>
-      <form id="changePassword" class="hideOnStart hideOnSignIn auth border">
-        <label class="col-12 changePassLabel">Old Password:</label>
-        <input class="input col-12" name="passwords[old]" type="password">
-        <label class="col-12 changePassLabel">New Password:</label>
-        <input class="input col-12" name="passwords[new]" type="password">
-        <button type="submit" class="btn btn-light">Confirm</button>
-      </form>
-        <button id="neat" class="hideOnStart hideOnSignIn menuBtn btn btn-light">Neat!</button>
-      <div id="board" class="hideOnStart showOnNewGame container">
-        <div class="row">
-          <div id="6" class="space top left col-4"></div>
-          <div id="7" class="space top col-4"></div>
-          <div id="8" class="space top right col-4"></div>
-        </div>
-        <div class="row">
-          <div id="3" class="space left col-4"></div>
-          <div id="4" class="space col-4"></div>
-          <div id="5" class="space right col-4"></div>
-        </div>
-        <div class="row">
-          <div id="0" class="space bottom left col-4"></div>
-          <div id="1" class="space bottom col-4"></div>
-          <div id="2" class="space bottom right col-4"></div>
+        <div class="col-12">
+          <label for="sequence">Sequence Order:</label>
+          <select name="sequence" id="sequence">
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <option value="6">6</option>
+            <option value="7">7</option>
+            <option value="8">8</option>
+          </select>
+          <button class="btn" id="testNote">Test</button>
+          <button class="btn" id="addToSequence">Add to Sequence</button>
         </div>
       </div>
-        <div id="gameMenu" class="hideOnStart showOnNewGame container border">
-          <div id="playerType" class="col-6 gameNav">Play Human</div>
-          <div id="playAgain" class="col-6 gameNav">Restart</div>
+      <div class="border">
+        <div class="col-12">
+          <h3>Oscillator</h3>
+          <label for="waveform">Waveform:</label>
+          <select name="waveform" id="waveform">
+            <option value="sine" selected="selected">Sine</option>
+            <option value="square">Square</option>
+            <option value="sawtooth">Sawtooth</option>
+            <option value="triangle">Triangle</option>
+          </select>
         </div>
-      <form id="authButtons" class="showOnStart hideOnSignIn border">
-        <h3 id="authHeader">New here?</h3>
-        <button id="signUpInstead" class="instead btn btn-light">Sign Up</button>
-        <button id="signInInstead" class="hideOnStart instead btn btn-light">Sign In</button>
-      </form>
-      <footer class="hideOnStart">
-        <button id="showSignOut" class="hideOnStart signOut btn btn-light">Sign Out</button>
-        <div id="areYouSure" class="hideOnStart hideOnSignIn signOut signOutConfirm">Are you sure?</div>
-        <button id="signOut" class="hideOnStart hideOnSignIn signOut signOutConfirm areYouSure btn btn-light">Yes</button>
-        <button id="cancelSignOut" class="hideOnStart hideOnSignIn showSignOut signOut signOutConfirm areYouSure btn btn-light">No</button>
-      </footer>
+        <div class="col-12">
+          <div>
+            <label for="gain">Gain:</label>
+            <input name="gain" type="range" min="0" max="100" value="50" class="slider" id="gain">
+          </div>
+        </div>
+      </div>
+      <div class="border">
+        <h3>Sequencer</h3>
+        <label for="tempo">Tempo:</label>
+        <input id="tempo" type="number" value="120">
+        <label for="tempo">BPM</label>
+        <button class="btn" id="startSequence">Play</button>
+        <div class="border col-12" id="displayNotes">
+          <div id="1" data-freq="" class="col-3">1</div>
+          <div id="2" data-freq="" class="col-3">2</div>
+          <div id="3" data-freq="" class="col-3">3</div>
+          <div id="4" data-freq="" class="col-3">4</div>
+          <div id="5" data-freq="" class="col-3">5</div>
+          <div id="6" data-freq="" class="col-3">6</div>
+          <div id="7" data-freq="" class="col-3">7</div>
+          <div id="8" data-freq="" class="col-3">8</div>
+        </div>
+      </div>
     </body>
 </html>
