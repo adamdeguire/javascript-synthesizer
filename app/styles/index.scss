@@ -19,7 +19,7 @@ h2, .btn {
 }
 
 body {
-  overflow: hidden;
+  overflow: scroll;
   height: auto;
   max-height: 100vh;
   margin: auto;
@@ -150,6 +150,7 @@ th {
   text-align: center;
   width: 25vw;
   min-width: 200px;
+  max-width: 300px;
   padding: 10px;
 }
 
@@ -160,6 +161,7 @@ th {
   -webkit-appearance: none;
   width: 20vw;
   min-width: 160px;
+  max-width: 260px;
   height: 15px;
   border-radius: 5px;
   background: $secondary;
@@ -230,11 +232,6 @@ th {
   }
 }
 
-@media (min-aspect-ratio: 9/10) {
-  body {
-    overflow: scroll;
-  }
-}
 
 #displayNotes {
   margin: 15px 0;
