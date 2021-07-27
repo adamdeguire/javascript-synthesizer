@@ -30,7 +30,7 @@ const playSequence = function () {
     target.css('color', 'white')
     target.css('font-weight', 'bold')
     target.css('background-color', 'brown')
-    store.oscillators[0].frequency.setValueAtTime(target.data('freq'), store.audioCtx.currentTime)
+    store.oscillators[0].frequency.setValueAtTime(target.data('freq'), store.context.currentTime)
     count++
   }, convert.bpmToMsInterval($('#tempo').val()))
 

@@ -1,21 +1,19 @@
 const store = require('./store')
 const convert = require('./convert')
-// create web audio api context
-const audioCtx = new (window.AudioContext || window.webkitAudioContext)()
-store.audioCtx = audioCtx
 
 // create Oscillator node
 const newOscillator = () => {
   const note = convert.inputToNote()
   const freq = convert.noteToFrequency(note)
-  const osc = audioCtx.createOscillator()
+
+  const osc = store.context.createOscillator()
+
+  osc.frequency.setValueAtTime(freq, store.context.currentTime)
   osc.type = 'sine'
-  osc.frequency.setValueAtTime(freq, audioCtx.currentTime) // value in hertz
-  osc.connect(audioCtx.destination)
   osc.on = false
-  store.oscillators.push(osc)
   osc.start()
-  osc.disconnect(audioCtx.destination)
+
+  store.oscillators.push(osc)
 }
 
 const setWaveform = () => {
@@ -26,8 +24,8 @@ const setWaveform = () => {
 const toggleOscillator = (osc) => {
   const note = convert.inputToNote()
   const freq = convert.noteToFrequency(note)
-  store.oscillators[0].frequency.setValueAtTime(freq, store.audioCtx.currentTime)
-  osc.on ? osc.disconnect(audioCtx.destination) : osc.connect(audioCtx.destination)
+  store.oscillators[0].frequency.setValueAtTime(freq, store.context.currentTime)
+  osc.on ? osc.disconnect(store.master) : osc.connect(store.master)
   osc.on = !osc.on
 }
 

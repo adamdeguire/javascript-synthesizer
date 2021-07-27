@@ -3,10 +3,13 @@ const sequencer = require('./sequencer')
 const oscillator = require('./oscillator')
 const store = require('./store')
 const convert = require('./convert')
+const effects = require('./effects')
 
 $(() => {
+  store.context = new (window.AudioContext || window.webkitAudioContext)()
+  console.log(store.context)
+  effects.initializeEffects()
   $(window).on('click', () => {
-    store.context = new (window.AudioContext || window.webkitAudioContext)()
     console.log('New Audio Context Created')
     $(window).off()
     oscillator.newOscillator()
@@ -29,4 +32,5 @@ $(() => {
     $('#sequence option:selected').next().attr('selected', 'selected')
   })
   $('#waveform').on('change', oscillator.setWaveform)
+  $('#gain').on('change', () => { store.master.gain.value = ($('#gain').val() / 100) })
 })
