@@ -22,16 +22,23 @@ const playSequence = function () {
   let count = 0
   togglePlay = !togglePlay
   const sequenceId = setInterval(function () {
-    const targetFreq = $(`#${1 + (count % sequencer.steps.length)}`).data('freq')
-    store.oscillators[0].frequency.setValueAtTime(targetFreq, store.audioCtx.currentTime)
+    const target = $(`#${1 + (count % sequencer.steps.length)}`)
+    const lastTarget = $(`#${1 + ((count - 1) % sequencer.steps.length)}`)
+    lastTarget.css('background-color', '')
+    lastTarget.css('font-weight', '')
+    lastTarget.css('color', '')
+    target.css('color', 'white')
+    target.css('font-weight', 'bold')
+    target.css('background-color', 'brown')
+    store.oscillators[0].frequency.setValueAtTime(target.data('freq'), store.audioCtx.currentTime)
     count++
   }, convert.bpmToMsInterval($('#tempo').val()))
 
-  if (!togglePlay) {
-    console.log(togglePlay)
-    console.log(sequenceId)
-    clearInterval(sequenceId)
-  }
+  // if (togglePlay) {
+  //   console.log(togglePlay)
+  //   console.log(sequenceId)
+  //   clearInterval(sequenceId)
+  // }
 }
 
 module.exports = {
