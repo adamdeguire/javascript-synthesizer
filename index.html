@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+    <head>
+      <title>JavaScript Synthesizer</title>
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+
+      <!-- Do not add `link` tags-->
+      <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
+
+      <!-- Do not add `script` tags-->
+      <script src="public/vendor.js" type="text/javascript" charset="utf-8" defer></script>
+      <script src="public/application.js" type="text/javascript" charset="utf-8" defer></script>
+    </head>
+    <body>
+      <h1>JavaScript Synthesizer</h1>
+      <div class="border">
+        <div class="col-12">
+          <h3>Select Note</h3>
+          <label for="letter">Note:</label>
+          <select name="letter" id="letter">
+            <option value="A" selected="selected">A</option>
+            <option value="B">B</option>
+            <option value="C">C</option>
+            <option value="D">D</option>
+            <option value="E">E</option>
+            <option value="F">F</option>
+            <option value="G">G</option>
+          </select>
+          <label for="accidental"></label>
+          <select name="accidental" id="accidental">
+            <option value="flat">b</option>
+            <option value="natural" selected="selected"></option>
+            <option value="sharp">#</option>
+          </select>
+          <label for="octave"></label>
+          <select name="octave" id="octave">
+            <option value="0">0</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4" selected="selected">4</option>
+            <option value="5">5</option>
+            <option value="6">6</option>
+            <option value="7">7</option>
+            <option value="8">8</option>
+          </select>
+        </div>
+        <div class="col-12">
+          <label for="sequence">Sequence Order:</label>
+          <select name="sequence" id="sequence">
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <option value="6">6</option>
+            <option value="7">7</option>
+            <option value="8">8</option>
+          </select>
+          <button class="btn" id="testNote">Test</button>
+          <button class="btn" id="addToSequence">Add to Sequence</button>
+        </div>
+      </div>
+      <div class="border">
+        <div class="col-12">
+          <h3>Oscillator</h3>
+          <label for="waveform">Waveform:</label>
+          <select name="waveform" id="waveform">
+            <option value="sine" selected="selected">Sine</option>
+            <option value="square">Square</option>
+            <option value="sawtooth">Sawtooth</option>
+            <option value="triangle">Triangle</option>
+          </select>
+        </div>
+        <div class="col-12">
+          <div>
+            <label for="gain">Gain:</label>
+            <input name="gain" type="range" min="0" max="100" value="50" class="slider" id="gain">
+          </div>
+        </div>
+      </div>
+      <div class="border">
+        <h3>Sequencer</h3>
+        <label for="tempo">Tempo:</label>
+        <input id="tempo" type="number" value="120">
+        <label for="tempo">BPM</label>
+        <button class="btn" id="startSequence">Play</button>
+        <div class="border col-12" id="displayNotes">
+          <div id="1" data-freq="" class="col-3">1</div>
+          <div id="2" data-freq="" class="col-3">2</div>
+          <div id="3" data-freq="" class="col-3">3</div>
+          <div id="4" data-freq="" class="col-3">4</div>
+          <div id="5" data-freq="" class="col-3">5</div>
+          <div id="6" data-freq="" class="col-3">6</div>
+          <div id="7" data-freq="" class="col-3">7</div>
+          <div id="8" data-freq="" class="col-3">8</div>
+        </div>
+      </div>
+    </body>
+</html>
